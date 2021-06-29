@@ -66,9 +66,6 @@ async def login(formData: OAuth2PasswordRequestForm = Depends()):
 
 @app.post("/weatherAPI")
 def getWeatherByCityName(cityName: str):
-    if login:
-        response = (requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=407b094ecd5af022cd41fc7077c7ca53").json())
-        return {"current weather": response['weather']}
-    else:
-        return {"error": "Please log in to access the weather API!"}
+    response = (requests.get(
+        f"http://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=407b094ecd5af022cd41fc7077c7ca53").json())
+    return {"current weather": response['weather']}
